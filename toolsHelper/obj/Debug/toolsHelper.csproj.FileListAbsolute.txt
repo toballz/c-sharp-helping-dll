@@ -1,0 +1,7 @@
+C:\Users\T\source\repos\toolsHelper\toolsHelper\bin\Debug\toolsHelper.dll
+C:\Users\T\source\repos\toolsHelper\toolsHelper\bin\Debug\toolsHelper.pdb
+C:\Users\T\source\repos\toolsHelper\toolsHelper\obj\Debug\toolsHelper.csproj.AssemblyReference.cache
+C:\Users\T\source\repos\toolsHelper\toolsHelper\obj\Debug\toolsHelper.csproj.CoreCompileInputs.cache
+C:\Users\T\source\repos\toolsHelper\toolsHelper\obj\Debug\toolsHelper.dll
+C:\Users\T\source\repos\toolsHelper\toolsHelper\obj\Debug\toolsHelper.pdb
+C:\Users\T\source\repos\toolsHelper\toolsHelper\bin\Debug\readme.md

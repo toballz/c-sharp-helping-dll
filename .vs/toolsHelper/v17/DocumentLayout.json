@@ -1,9 +1,9 @@
 {
   "Version": 1,
-  "WorkspaceRootPath": "C:\\Users\\T\\source\\repos\\toolsHelper\\",
+  "WorkspaceRootPath": "C:\\Users\\a\\source\\repos\\c-sharp-helping-dll\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{EB3F5F6D-38FE-477E-95AD-007BCFCBC305}|toolsHelper\\toolsHelper.csproj|c:\\users\\t\\source\\repos\\toolshelper\\toolshelper\\class1.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "AbsoluteMoniker": "D:0:0:{EB3F5F6D-38FE-477E-95AD-007BCFCBC305}|toolsHelper\\toolsHelper.csproj|c:\\users\\a\\source\\repos\\c-sharp-helping-dll\\toolshelper\\class1.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{EB3F5F6D-38FE-477E-95AD-007BCFCBC305}|toolsHelper\\toolsHelper.csproj|solutionrelative:toolshelper\\class1.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
@@ -24,9 +24,9 @@
               "DocumentIndex": 1,
               "Title": "wondaRew.deps.json",
               "DocumentMoniker": "C:\\Users\\T\\source\\repos\\wondaRew\\wondaRew\\bin\\Debug\\net8.0-windows\\wondaRew.deps.json",
-              "RelativeDocumentMoniker": "..\\wondaRew\\wondaRew\\bin\\Debug\\net8.0-windows\\wondaRew.deps.json",
+              "RelativeDocumentMoniker": "..\\..\\..\\..\\T\\source\\repos\\wondaRew\\wondaRew\\bin\\Debug\\net8.0-windows\\wondaRew.deps.json",
               "ToolTip": "C:\\Users\\T\\source\\repos\\wondaRew\\wondaRew\\bin\\Debug\\net8.0-windows\\wondaRew.deps.json",
-              "RelativeToolTip": "..\\wondaRew\\wondaRew\\bin\\Debug\\net8.0-windows\\wondaRew.deps.json",
+              "RelativeToolTip": "..\\..\\..\\..\\T\\source\\repos\\wondaRew\\wondaRew\\bin\\Debug\\net8.0-windows\\wondaRew.deps.json",
               "ViewState": "AgIAAA8AAAAAAAAAAAAAAA4AAAAJAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001642|",
               "WhenOpened": "2024-11-22T03:57:52.391Z"
@@ -35,11 +35,11 @@
               "$type": "Document",
               "DocumentIndex": 0,
               "Title": "Class1.cs",
-              "DocumentMoniker": "C:\\Users\\T\\source\\repos\\toolsHelper\\toolsHelper\\Class1.cs",
+              "DocumentMoniker": "C:\\Users\\a\\source\\repos\\c-sharp-helping-dll\\toolsHelper\\Class1.cs",
               "RelativeDocumentMoniker": "toolsHelper\\Class1.cs",
-              "ToolTip": "C:\\Users\\T\\source\\repos\\toolsHelper\\toolsHelper\\Class1.cs",
+              "ToolTip": "C:\\Users\\a\\source\\repos\\c-sharp-helping-dll\\toolsHelper\\Class1.cs",
               "RelativeToolTip": "toolsHelper\\Class1.cs",
-              "ViewState": "AgIAAD0AAAAAAAAAAAAcwEYAAAANAAAAAAAAAA==",
+              "ViewState": "AgIAAA4AAAAAAAAAAAAswKEAAAA4AAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2024-11-21T23:55:26.703Z",
               "EditorCaption": ""

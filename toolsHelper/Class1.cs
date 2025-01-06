@@ -12,7 +12,7 @@ namespace toolsHelper
     {
         private static Random _newRandom = new Random();
         //console.writeline
-        public static void print(string s, ConsoleColor c = ConsoleColor.White)
+        public static void Print(string s, ConsoleColor c = ConsoleColor.White)
         {
             Console.ForegroundColor = c;
             Console.WriteLine(s);
@@ -152,5 +152,18 @@ namespace toolsHelper
             throw new IOException("File does not exist.");
         }
 
+        //get random string
+        public static string RandomString(int length, bool includeUppercase = false)
+        {
+            const string lowercaseChars = "abcdefghijklmnopqrstuvwxyz0123456789";
+            const string uppercaseChars = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
+            string chars = includeUppercase ? uppercaseChars + lowercaseChars : lowercaseChars;
+            char[] stringChars = new char[length];
+            for (int i = 0; i < stringChars.Length; i++)
+            {
+                stringChars[i] = chars[_newRandom.Next(chars.Length)];
+            }
+            return new string(stringChars);
+        }
     }
 }

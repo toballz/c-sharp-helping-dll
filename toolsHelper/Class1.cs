@@ -165,5 +165,60 @@ namespace toolsHelper
             }
             return new string(stringChars);
         }
+
+        //desktop key hook
+        public class GlobalKeyboardHook
+        {
+            private Action<IntPtr, int> _keyPressAction;
+            private const int WH_KEYBOARD_LL = 13;
+            private const int WM_KEYUP = 0x0101;
+
+            private delegate int LowLevelKeyboardProc(int nCode, IntPtr wParam, IntPtr lParam);
+
+            [DllImport("user32.dll", CharSet = CharSet.Auto, SetLastError = true)]
+            private static extern IntPtr SetWindowsHookEx(int idHook, LowLevelKeyboardProc lpfn, IntPtr hMod, uint dwThreadId);
+
+            [DllImport("user32.dll", CharSet = CharSet.Auto, SetLastError = true)]
+            private static extern bool UnhookWindowsHookEx(IntPtr hhk);
+
+            [DllImport("user32.dll", CharSet = CharSet.Auto, SetLastError = true)]
+            private static extern IntPtr CallNextHookEx(IntPtr hhk, int nCode, IntPtr wParam, IntPtr lParam);
+
+            private IntPtr _hookID = IntPtr.Zero;
+            private LowLevelKeyboardProc _proc;
+
+            public GlobalKeyboardHook()
+            {
+                _proc = HookCallback;
+            }
+
+            /// <summary>
+            /// wParam is keyup or keydown, vkCode is key pressed
+            /// </summary>
+            /// <param name="keyPressAction"></param>
+            public void Hook(Action<IntPtr, int> keyPressAction)
+            {
+                _keyPressAction = keyPressAction;
+                _hookID = SetWindowsHookEx(WH_KEYBOARD_LL, _proc, IntPtr.Zero, 0);
+            }
+
+            public void Unhook()
+            {
+                UnhookWindowsHookEx(_hookID);
+            }
+
+            private int HookCallback(int nCode, IntPtr wParam, IntPtr lParam)
+            {
+                if (nCode >= 0) 
+                {
+                    int vkCode = Marshal.ReadInt32(lParam);
+
+
+                    _keyPressAction?.Invoke(wParam, vkCode);
+                }
+
+                return (int)CallNextHookEx(_hookID, nCode, wParam, lParam);
+            }
+        }
     }
 }

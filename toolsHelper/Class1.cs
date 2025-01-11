@@ -224,16 +224,15 @@ namespace toolsHelper
             }
         }
 
-        public static string Takescreenshot(string folderLocation)
+        public static string Takescreenshot(string folderLocation, Size dimensions)
         {
-                Bitmap bitmap = new Bitmap((int)SystemParameters.PrimaryScreenWidth,
-                    (int)SystemParameters.PrimaryScreenHeight);
-                Graphics graphics = Graphics.FromImage(bitmap as System.Drawing.Image);
-                graphics.CopyFromScreen(0, 0, 0, 0, bitmap.Size);
-                string finename = $"{RandomString(20)}.png";
-            Console.Write(Path.Combine(folderLocation, $"screenshot_{finename}"));
-                //bitmap.Save(Path.Combine(folderLocation,$"screenshot_{finename}"), ImageFormat.Png);
-                return finename;
+            Bitmap bitmap = new Bitmap(dimensions.Width, dimensions.Height);
+            Graphics graphics = Graphics.FromImage(bitmap as Image);
+            graphics.CopyFromScreen(0, 0, 0, 0, bitmap.Size);
+            string finename = $"{RandomString(20)}.png"; 
+                
+            bitmap.Save(Path.Combine(folderLocation,$"screenshot_{finename}"), ImageFormat.Png);
+            return finename;
           
         }
     }

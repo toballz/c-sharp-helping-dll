@@ -2,7 +2,6 @@
 using System;
 using System.Collections.Generic;
 using System.Drawing;
-using System.Windows;
 using System.IO; 
 using System.Runtime.InteropServices;
 using System.Security.Cryptography; 
@@ -11,7 +10,7 @@ using System.Drawing.Imaging;
 
 namespace toolsHelper
 {
-    public class h
+    public class H
     {
         private static Random _newRandom = new Random();
         //console.writeline
@@ -95,66 +94,68 @@ namespace toolsHelper
         }
 
         //shred file
-        [DllImport("Kernel32.dll", SetLastError = true, CharSet = CharSet.Auto)]
-        private static extern bool FlushFileBuffers(SafeFileHandle handle);
-        public static void Shred_File(string filePath, int overwriteIliteration = 4)
+        public class Shred_File
         {
-            if (File.Exists(filePath))
+            [DllImport("Kernel32.dll", SetLastError = true, CharSet = CharSet.Auto)]
+            private static extern bool FlushFileBuffers(SafeFileHandle handle);
+            public static void Shred(string filePath, int overwriteIliteration = 4)
             {
-                long fileSize = new FileInfo(filePath).Length;
-                byte[] randomBytes = new byte[_newRandom.Next(50, 100)];
-
-                try
+                if (File.Exists(filePath))
                 {
-                    // Fill with random data
-                    _newRandom.NextBytes(randomBytes);
-                    File.WriteAllBytes(filePath, randomBytes);
-                    Thread.Sleep(10);
-                    // Write random data to file multiple times
-                    for (int i = 0; i < overwriteIliteration; i++)
+                    long fileSize = new FileInfo(filePath).Length;
+                    byte[] randomBytes = new byte[_newRandom.Next(50, 100)];
+
+                    try
                     {
+                        // Fill with random data
                         _newRandom.NextBytes(randomBytes);
-                        using (FileStream fileStream = new FileStream(filePath, FileMode.Open, FileAccess.Write))
+                        File.WriteAllBytes(filePath, randomBytes);
+                        Thread.Sleep(10);
+                        // Write random data to file multiple times
+                        for (int i = 0; i < overwriteIliteration; i++)
                         {
-                            fileStream.Write(randomBytes, 0, randomBytes.Length);
-                            fileStream.Flush(); // Flush FileStream buffers
-
-                            // Flush OS buffers to disk
-                            if (!FlushFileBuffers(fileStream.SafeFileHandle))
+                            _newRandom.NextBytes(randomBytes);
+                            using (FileStream fileStream = new FileStream(filePath, FileMode.Open, FileAccess.Write))
                             {
-                                throw new IOException("Failed to flush file buffers.");
+                                fileStream.Write(randomBytes, 0, randomBytes.Length);
+                                fileStream.Flush(); // Flush FileStream buffers
+
+                                // Flush OS buffers to disk
+                                if (!FlushFileBuffers(fileStream.SafeFileHandle))
+                                {
+                                    throw new IOException("Failed to flush file buffers.");
+                                }
                             }
+                            Thread.Sleep(10);
+                            // Modify file timestamps
+                            File.SetCreationTime(filePath, new DateTime(1984, 2, 5));
+                            File.SetLastWriteTime(filePath, new DateTime(1984, 2, 5));
+                            File.SetLastAccessTime(filePath, new DateTime(1984, 2, 5));
+
+                            Thread.Sleep(10);
                         }
-                        Thread.Sleep(10);
-                        // Modify file timestamps
-                        File.SetCreationTime(filePath, new DateTime(1984, 2, 5));
-                        File.SetLastWriteTime(filePath, new DateTime(1984, 2, 5));
-                        File.SetLastAccessTime(filePath, new DateTime(1984, 2, 5));
 
-                        Thread.Sleep(10);
+
+
+                        File.Delete(filePath);
                     }
-
-
-
-                    File.Delete(filePath);
+                    catch (IOException ioEx)
+                    {
+                        throw new IOException($"File I/O error: {ioEx.Message}");
+                    }
+                    catch (UnauthorizedAccessException unAuthEx)
+                    {
+                        throw new IOException($"Permission error: {unAuthEx.Message}");
+                    }
+                    catch (Exception ex)
+                    {
+                        throw new IOException($"Error: {ex.Message}");
+                    }
+                    return;
                 }
-                catch (IOException ioEx)
-                {
-                    throw new IOException($"File I/O error: {ioEx.Message}");
-                }
-                catch (UnauthorizedAccessException unAuthEx)
-                {
-                    throw new IOException($"Permission error: {unAuthEx.Message}");
-                }
-                catch (Exception ex)
-                {
-                    throw new IOException($"Error: {ex.Message}");
-                }
-                return;
+                throw new IOException("File does not exist.");
             }
-            throw new IOException("File does not exist.");
         }
-
         //get random string
         public static string RandomString(int length, bool includeUppercase = false)
         {
@@ -229,11 +230,10 @@ namespace toolsHelper
             Bitmap bitmap = new Bitmap(dimensions.Width, dimensions.Height);
             Graphics graphics = Graphics.FromImage(bitmap as Image);
             graphics.CopyFromScreen(0, 0, 0, 0, bitmap.Size);
-            string finename = $"{RandomString(20)}.png"; 
+            string finename = $"{RandomString(20)}.png";
                 
             bitmap.Save(Path.Combine(folderLocation,$"screenshot_{finename}"), ImageFormat.Png);
             return finename;
-          
         }
     }
 }

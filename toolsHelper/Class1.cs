@@ -1,10 +1,13 @@
 ﻿using Microsoft.Win32.SafeHandles;
 using System;
 using System.Collections.Generic;
+using System.Drawing;
+using System.Windows;
 using System.IO; 
 using System.Runtime.InteropServices;
 using System.Security.Cryptography; 
-using System.Threading; 
+using System.Threading;
+using System.Drawing.Imaging;
 
 namespace toolsHelper
 {
@@ -43,9 +46,9 @@ namespace toolsHelper
         {
             public static string SHA384_(byte[] byeta)
             {
-                byte[] byet= new byte[0];
+                byte[] byet = new byte[0];
                 using (SHA384 sha384Hash = SHA384.Create())
-                { 
+                {
                     byte[] sha384HashBytes = sha384Hash.ComputeHash(byet);
                     string sha384HashResult = BitConverter.ToString(sha384HashBytes).Replace("-", String.Empty);
                     return sha384HashResult;
@@ -133,11 +136,11 @@ namespace toolsHelper
 
 
 
-                    File.Delete(filePath); 
+                    File.Delete(filePath);
                 }
                 catch (IOException ioEx)
                 {
-                    throw new IOException($"File I/O error: {ioEx.Message}"); 
+                    throw new IOException($"File I/O error: {ioEx.Message}");
                 }
                 catch (UnauthorizedAccessException unAuthEx)
                 {
@@ -209,7 +212,7 @@ namespace toolsHelper
 
             private int HookCallback(int nCode, IntPtr wParam, IntPtr lParam)
             {
-                if (nCode >= 0) 
+                if (nCode >= 0)
                 {
                     int vkCode = Marshal.ReadInt32(lParam);
 
@@ -219,6 +222,19 @@ namespace toolsHelper
 
                 return (int)CallNextHookEx(_hookID, nCode, wParam, lParam);
             }
+        }
+
+        public static string Takescreenshot(string folderLocation)
+        {
+                Bitmap bitmap = new Bitmap((int)SystemParameters.PrimaryScreenWidth,
+                    (int)SystemParameters.PrimaryScreenHeight);
+                Graphics graphics = Graphics.FromImage(bitmap as System.Drawing.Image);
+                graphics.CopyFromScreen(0, 0, 0, 0, bitmap.Size);
+                string finename = $"{RandomString(20)}.png";
+            Console.Write(Path.Combine(folderLocation, $"screenshot_{finename}"));
+                //bitmap.Save(Path.Combine(folderLocation,$"screenshot_{finename}"), ImageFormat.Png);
+                return finename;
+          
         }
     }
 }

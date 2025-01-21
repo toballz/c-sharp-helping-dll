@@ -14,11 +14,16 @@ namespace toolsHelper
     {
         private static Random _newRandom = new Random();
         //console.writeline
-        public static void Print(string s, ConsoleColor c = ConsoleColor.White)
+        public static void Print<T>(T v = default,  ConsoleColor c = ConsoleColor.White)
         {
             Console.ForegroundColor = c;
-            Console.WriteLine(s);
+            Console.Write(v);
             Console.ResetColor();
+        }
+        public static void PrintL<T>(T v = default, ConsoleColor c = ConsoleColor.White)
+        {
+            Print(v,c);
+            Console.Write("\n");
         }
 
         //get params
@@ -98,7 +103,7 @@ namespace toolsHelper
         {
             [DllImport("Kernel32.dll", SetLastError = true, CharSet = CharSet.Auto)]
             private static extern bool FlushFileBuffers(SafeFileHandle handle);
-            public static void Shred(string filePath, int overwriteIliteration = 4)
+            public static bool Shred(string filePath, int overwriteIliteration = 4)
             {
                 if (File.Exists(filePath))
                 {
@@ -126,6 +131,10 @@ namespace toolsHelper
                                     throw new IOException("Failed to flush file buffers.");
                                 }
                             }
+                            using (var fileStream = new FileStream(filePath, FileMode.Truncate, FileAccess.Write))
+                            {
+                                fileStream.SetLength(0);
+                            }
                             Thread.Sleep(10);
                             // Modify file timestamps
                             File.SetCreationTime(filePath, new DateTime(1984, 2, 5));
@@ -135,9 +144,8 @@ namespace toolsHelper
                             Thread.Sleep(10);
                         }
 
-
-
                         File.Delete(filePath);
+                        return true;
                     }
                     catch (IOException ioEx)
                     {
@@ -151,9 +159,11 @@ namespace toolsHelper
                     {
                         throw new IOException($"Error: {ex.Message}");
                     }
-                    return;
                 }
-                throw new IOException("File does not exist.");
+                else
+                {
+                    throw new IOException("File does not exist.");
+                } 
             }
         }
         //get random string

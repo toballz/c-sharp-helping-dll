@@ -143,7 +143,6 @@ namespace toolsHelper
 
                             Thread.Sleep(10);
                         }
-
                         File.Delete(filePath);
                         return true;
                     }

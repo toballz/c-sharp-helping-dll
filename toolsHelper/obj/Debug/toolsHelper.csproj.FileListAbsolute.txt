@@ -12,3 +12,10 @@ C:\Users\a\source\repos\c-sharp-helping-dll\toolsHelper\obj\Debug\toolsHelper.cs
 C:\Users\a\source\repos\c-sharp-helping-dll\toolsHelper\obj\Debug\toolsHelper.csproj.CoreCompileInputs.cache
 C:\Users\a\source\repos\c-sharp-helping-dll\toolsHelper\obj\Debug\toolsHelper.dll
 C:\Users\a\source\repos\c-sharp-helping-dll\toolsHelper\obj\Debug\toolsHelper.pdb
+C:\Users\KingEli\source\repos\c-sharp-helping-dll\toolsHelper\bin\Debug\readme.md
+C:\Users\KingEli\source\repos\c-sharp-helping-dll\toolsHelper\bin\Debug\toolsHelper.dll
+C:\Users\KingEli\source\repos\c-sharp-helping-dll\toolsHelper\bin\Debug\toolsHelper.pdb
+C:\Users\KingEli\source\repos\c-sharp-helping-dll\toolsHelper\obj\Debug\toolsHelper.csproj.AssemblyReference.cache
+C:\Users\KingEli\source\repos\c-sharp-helping-dll\toolsHelper\obj\Debug\toolsHelper.csproj.CoreCompileInputs.cache
+C:\Users\KingEli\source\repos\c-sharp-helping-dll\toolsHelper\obj\Debug\toolsHelper.dll
+C:\Users\KingEli\source\repos\c-sharp-helping-dll\toolsHelper\obj\Debug\toolsHelper.pdb

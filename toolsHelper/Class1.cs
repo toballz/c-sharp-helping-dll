@@ -1,18 +1,16 @@
 ﻿using Microsoft.Win32.SafeHandles;
 using System;
-using System.Collections.Generic;
-using System.Drawing;
+using System.Collections.Generic; 
 using System.IO; 
 using System.Runtime.InteropServices;
 using System.Security.Cryptography; 
-using System.Threading;
-using System.Drawing.Imaging;
+using System.Threading; 
 
 namespace toolsHelper
 {
     public class H
     {
-        private static Random _newRandom = new Random();
+        private static readonly Random _newRandom = new Random();
         //console.writeline
         public static void Print<T>(T v = default,  ConsoleColor c = ConsoleColor.White)
         {
@@ -50,10 +48,9 @@ namespace toolsHelper
         {
             public static string SHA384_(byte[] byeta)
             {
-                byte[] byet = new byte[0];
                 using (SHA384 sha384Hash = SHA384.Create())
                 {
-                    byte[] sha384HashBytes = sha384Hash.ComputeHash(byet);
+                    byte[] sha384HashBytes = sha384Hash.ComputeHash(byeta);
                     string sha384HashResult = BitConverter.ToString(sha384HashBytes).Replace("-", String.Empty);
                     return sha384HashResult;
                 }
@@ -107,7 +104,7 @@ namespace toolsHelper
             {
                 if (File.Exists(filePath))
                 {
-                    long fileSize = new FileInfo(filePath).Length;
+                    //long fileSize = new FileInfo(filePath).Length;
                     byte[] randomBytes = new byte[_newRandom.Next(50, 100)];
 
                     try
@@ -234,15 +231,6 @@ namespace toolsHelper
             }
         }
 
-        public static string Takescreenshot(string folderLocation, Size dimensions)
-        {
-            Bitmap bitmap = new Bitmap(dimensions.Width, dimensions.Height);
-            Graphics graphics = Graphics.FromImage(bitmap as Image);
-            graphics.CopyFromScreen(0, 0, 0, 0, bitmap.Size);
-            string finename = $"{RandomString(20)}.png";
-                
-            bitmap.Save(Path.Combine(folderLocation,$"screenshot_{finename}"), ImageFormat.Png);
-            return finename;
-        }
+         
     }
 }

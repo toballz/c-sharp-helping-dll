@@ -1,3 +1,5 @@
 
 /.vs
 /toolsHelper/obj
+/toolsHelper/obj
+*.cache
